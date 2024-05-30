@@ -7,7 +7,6 @@ from dotmap import DotMap
 from verifai.samplers import ScenicSampler
 from verifai.samplers import CompositionalScenicSampler
 from verifai.scenic_server import ScenicServer
-from verifai.falsifier import generic_falsifier, compositional_falsifier
 from verifai.monitor import specification_monitor, mtl_specification
 
 # Load the Scenic scenario and create a sampler from it
