@@ -50,35 +50,4 @@ class MyMonitor(specification_monitor):
         # Evaluate MTL formula given values for its atomic propositions
         return self.specification.evaluate(eval_dictionary)
 
-# Set up the falsifier
-falsifier_params = DotMap(
-    n_iters=2,
-    verbosity=1,
-    save_error_table=True,
-    save_safe_table=True
-)
-server_options = DotMap(maxSteps=100, verbosity=0)
-if is_compositional:
-    falsifier = compositional_falsifier(sampler=sampler,
-                                  monitor=MyMonitor(),
-                                  falsifier_params=falsifier_params,
-                                  server_class=ScenicServer,
-                                  server_options=server_options)
-    falsifier.run_falsifier()
-    print('Error table:')
-    falsifier.print_error_tables()
-    print('Safe table:')
-    falsifier.print_safe_tables()
-    print(falsifier.get_rho())
-else:
-    falsifier = generic_falsifier(sampler=sampler,
-                                  monitor=MyMonitor(),
-                                  falsifier_params=falsifier_params,
-                                  server_class=ScenicServer,
-                                  server_options=server_options)
-    falsifier.run_falsifier()
-    print('Error table:')
-    print(falsifier.error_table.table)
-    print('Safe table:')
-    print(falsifier.safe_table.table)
 
